@@ -21,7 +21,7 @@
         android:backgroundTint="#000000" />
 
     <Button
-        android:id="@+id/colorBlueButton"
+        android:id="@+id/colorButton"
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="32dp"
         android:layout_height="32dp"
@@ -29,20 +29,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:background="@drawable/circle_button_drawable"
-        android:backgroundTint="#0000ff" />
-
-    <Button
-        android:id="@+id/colorRedButton"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/circle_button_drawable"
-        android:backgroundTint="#ff0000" />
+        android:background="@drawable/color_button_drawable" />
 
     <com.xw.repo.BubbleSeekBar
         android:id="@+id/strokeWidthSeekBar"
@@ -60,5 +47,10 @@
         android:layout_height="40dp"
         android:background="@drawable/eraser_button_drawable"
         />
+    <Button
+        android:id="@+id/menuButton"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/more_options_drawable" />
 
 </LinearLayout>

@@ -13,6 +13,7 @@ import com.xw.repo.BubbleSeekBar
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.drawing_toolbar_layout.*
 
+
 class MainActivity : AppCompatActivity(), View.OnClickListener, ColorPickerDialogListener, BubbleSeekBar.OnProgressChangedListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,19 +21,21 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, ColorPickerDialo
         setContentView(R.layout.activity_main)
 
         colorBlackButton.setOnClickListener(this)
-        colorBlueButton.setOnClickListener(this)
-        colorRedButton.setOnClickListener(this)
+        colorButton.setOnClickListener(this)
         eraserTypeButton.setOnClickListener(this)
-
+        menuButton.setOnClickListener(this)
         strokeWidthSeekBar.onProgressChangedListener = this
     }
 
     override fun onClick(view: View?) {
         when (view?.id) {
             R.id.colorBlackButton -> showColorPickerDialog(view.id)
-            R.id.colorBlueButton  -> showColorPickerDialog(view.id)
-            R.id.colorRedButton   -> showColorPickerDialog(view.id)
+            R.id.colorButton  -> showColorPickerDialog(view.id)
             R.id.eraserTypeButton -> drawingView.updateDrawingType(DrawingType.Eraser)
+            R.id.menuButton -> {
+                //Fragment with main menu R.id.menu.menu TO-DO: Ola
+
+            }
         }
     }
 
@@ -52,11 +55,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, ColorPickerDialo
             R.id.colorBlackButton -> {
                 colorBlackButton.backgroundTintList = colorStateList
             }
-            R.id.colorBlueButton  -> {
-                colorBlueButton.backgroundTintList = colorStateList
-            }
-            R.id.colorRedButton   -> {
-                colorRedButton.backgroundTintList = colorStateList
+            R.id.colorButton -> { drawingView.fillColor(color)
             }
         }
 

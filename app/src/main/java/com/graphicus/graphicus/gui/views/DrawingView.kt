@@ -153,4 +153,8 @@ class DrawingView : View {
             drawingPaint.strokeWidth = width
         }
     }
+
+    fun fillColor(color: Int){
+        canvas?.drawColor(color)
+    }
 }
