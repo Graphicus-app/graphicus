@@ -15,23 +15,6 @@
         tools:layout_editor_absoluteX="31dp"
         tools:layout_editor_absoluteY="0dp" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/new_image_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:src="@drawable/add_image"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
-
     <include
         layout="@layout/drawing_toolbar_layout"
         android:layout_width="wrap_content"

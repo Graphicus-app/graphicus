@@ -1,12 +1,15 @@
 <resources>
-    <string name="app_name">Graphicus</string>
-    <string name="save">Zapisz</string>
-    <string name="new_project">"Nowy projekt"</string>
-    <string name="open">Otwórz</string>
-    <string name="exit">Wyjdź</string>
-    <string name="undo">Cofnij</string>
-    <string name="redo">Powtórz</string>
+    <string name="app_name" translatable="false">Graphicus</string>
+    <string name="save">Save</string>
+    <string name="new_project">New project</string>
+    <string name="open">Open</string>
+    <string name="exit">Exit</string>
+    <string name="undo">Undo</string>
+    <string name="redo">Redo</string>
 
+    <string name="add_project_empty">Empty project</string>
+    <string name="add_project_file">From file</string>
+    <string name="add_project_camera">From camera</string>
 
 
 </resources>

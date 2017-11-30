@@ -156,5 +156,6 @@ class DrawingView : View {
 
     fun fillColor(color: Int){
         canvas?.drawColor(color)
+        invalidate()
     }
 }
