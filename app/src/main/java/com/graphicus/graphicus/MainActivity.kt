@@ -2,6 +2,7 @@ package com.graphicus.graphicus
 
 import android.content.res.ColorStateList
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.support.annotation.ColorInt
 import android.support.annotation.IdRes
@@ -28,7 +29,14 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, ColorPickerDialo
         strokeWidthSeekBar.onProgressChangedListener = this
 
         if (intent.extras != null) {
-            val bitmap: Bitmap = intent.extras.get("photo") as Bitmap
+            var bitmap: Bitmap? = null
+
+            if (intent.extras.get("photo") != null) {
+                bitmap = intent.extras.get("photo") as Bitmap
+            } else if (intent.getStringExtra("filePath") != null) {
+                bitmap = BitmapFactory.decodeFile(intent.getStringExtra("filePath"))
+            }
+
             drawingView.setImageBitmap(bitmap)
         }
     }

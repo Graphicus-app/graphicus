@@ -4,6 +4,7 @@ import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.provider.MediaStore
 import android.support.v4.content.ContextCompat
@@ -11,10 +12,10 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.gordonwong.materialsheetfab.MaterialSheetFab
 import com.graphicus.graphicus.gui.views.CustomFloatingActionButton
+import com.graphicus.graphicus.utility.FileUtility
 import kotlinx.android.synthetic.main.home_screen_layout.*
 import pub.devrel.easypermissions.AfterPermissionGranted
 import pub.devrel.easypermissions.EasyPermissions
-
 
 
 class HomeScreenActivity : AppCompatActivity() {
@@ -24,6 +25,7 @@ class HomeScreenActivity : AppCompatActivity() {
         const val RC_CAMERA_PERMISSION: Int = 123
         const val RC_WRITE_STORAGE_PERMISSION = 124
         const val CAMERA_INTENT = 1000
+        const val FILE_INTENT = 1001
     }
 
     private lateinit var materialSheetFab: MaterialSheetFab<CustomFloatingActionButton>
@@ -59,6 +61,11 @@ class HomeScreenActivity : AppCompatActivity() {
             val bitmap: Bitmap = data?.extras?.get("data") as Bitmap
             intent.putExtra("photo", bitmap)
             startActivity(intent)
+        } else if (requestCode == FILE_INTENT && resultCode == Activity.RESULT_OK) {
+            val filePath = FileUtility.getPathFromUri(this, data?.data)
+            val intent = Intent(this, MainActivity::class.java)
+            intent.putExtra("filePath", filePath)
+            startActivity(intent)
         }
     }
 
@@ -87,6 +94,17 @@ class HomeScreenActivity : AppCompatActivity() {
             }
         } else {
             EasyPermissions.requestPermissions(this, "Please :)", RC_CAMERA_PERMISSION, Manifest.permission.CAMERA)
+        }
+    }
+
+    @AfterPermissionGranted(RC_WRITE_STORAGE_PERMISSION)
+    fun createProjectFromFile(@Suppress("UNUSED_PARAMETER") v: View) {
+        if (EasyPermissions.hasPermissions(this, Manifest.permission.READ_EXTERNAL_STORAGE)) {
+            val intent = Intent(Intent.ACTION_GET_CONTENT)
+            intent.type = "image/*"
+            startActivityForResult(intent, FILE_INTENT)
+        } else {
+            EasyPermissions.requestPermissions(this, "Please :)", RC_WRITE_STORAGE_PERMISSION, Manifest.permission.READ_EXTERNAL_STORAGE)
         }
     }
 
