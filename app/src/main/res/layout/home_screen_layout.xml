@@ -68,7 +68,7 @@
                     style="@style/TextAppearance.MaterialSheetFab.Sheet.Item"
                     android:drawableStart="@drawable/add_empty_project_icon"
                     android:text="@string/add_project_empty"
-                    android:onClick="createProject"/>
+                    android:onClick="createEmptyProject"/>
 
                 <TextView
                     android:id="@+id/new_project_from_file"
@@ -80,7 +80,8 @@
                     android:id="@+id/new_project_from_camera"
                     style="@style/TextAppearance.MaterialSheetFab.Sheet.Item"
                     android:drawableStart="@drawable/add_project_from_camera_icon"
-                    android:text="@string/add_project_camera"/>
+                    android:text="@string/add_project_camera"
+                    android:onClick="createProjectFromCamera"/>
 
             </LinearLayout>
 

@@ -1,6 +1,7 @@
 package com.graphicus.graphicus
 
 import android.content.res.ColorStateList
+import android.graphics.Bitmap
 import android.os.Bundle
 import android.support.annotation.ColorInt
 import android.support.annotation.IdRes
@@ -25,6 +26,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, ColorPickerDialo
         eraserTypeButton.setOnClickListener(this)
         menuButton.setOnClickListener(this)
         strokeWidthSeekBar.onProgressChangedListener = this
+
+        if (intent.extras != null) {
+            val bitmap: Bitmap = intent.extras.get("photo") as Bitmap
+            drawingView.setImageBitmap(bitmap)
+        }
     }
 
     override fun onClick(view: View?) {

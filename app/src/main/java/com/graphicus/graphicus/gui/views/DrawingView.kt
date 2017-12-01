@@ -6,12 +6,15 @@ import android.graphics.*
 import android.support.annotation.ColorInt
 import android.util.AttributeSet
 import android.view.MotionEvent
-import android.view.View
+import android.widget.ImageView
 import com.graphicus.graphicus.core.drawing.DrawingType
+import com.graphicus.graphicus.core.drawing.LineData
 
-class DrawingView : View {
+class DrawingView : ImageView {
 
     private val touchTolerance: Float = 3.0f
+
+    private val lineDataList: ArrayList<LineData> = ArrayList()
 
     private var prevX: Float = 0.0f
     private var prevY: Float = 0.0f
@@ -92,7 +95,11 @@ class DrawingView : View {
     }
 
     private fun touchDown(x: Float, y: Float) {
-        strokePath.reset()
+        strokePath = Path()
+
+        val lineData = LineData(strokeColor, strokeWidth, strokePath)
+        lineDataList.add(lineData)
+
         strokePath.moveTo(x, y)
         prevX = x
         prevY = y
@@ -155,7 +162,23 @@ class DrawingView : View {
     }
 
     fun fillColor(color: Int){
+        canvas?.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR)
         canvas?.drawColor(color)
+        invalidate()
+        redrawLines()
+    }
+
+    private fun redrawLines() {
+        val oldPaint = drawingPaint
+
+        for (item in lineDataList) {
+            drawingPaint.color = item.lineColor
+            drawingPaint.strokeWidth = item.strokeWidth
+            canvas?.drawPath(item.strokePath, drawingPaint)
+        }
+
+        drawingPaint = oldPaint
+
         invalidate()
     }
 }
