@@ -43,13 +43,14 @@ class DrawingView : ImageView {
     private fun init() {
         strokePath = Path()
         bitmapPaint = Paint(Paint.DITHER_FLAG)
-        drawingPaint = Paint()
-        drawingPaint.isAntiAlias = true
-        drawingPaint.color = strokeColor
-        drawingPaint.style = Paint.Style.STROKE
-        drawingPaint.strokeJoin = Paint.Join.ROUND
-        drawingPaint.strokeCap = Paint.Cap.ROUND
-        drawingPaint.strokeWidth = strokeWidth
+        drawingPaint = Paint().apply {
+            isAntiAlias = true
+            color = strokeColor
+            style = Paint.Style.STROKE
+            strokeJoin = Paint.Join.ROUND
+            strokeCap = Paint.Cap.ROUND
+            strokeWidth = strokeWidth
+        }
     }
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
@@ -130,9 +131,7 @@ class DrawingView : ImageView {
             drawingMoved = false
         }
 
-//        if (drawingType != DrawingType.Eraser) {
-            canvas?.drawPath(strokePath, drawingPaint)
-//        }
+        canvas?.drawPath(strokePath, drawingPaint)
 
         strokePath.reset()
     }
