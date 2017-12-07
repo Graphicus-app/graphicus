@@ -12,4 +12,7 @@
     <dimen name="fab_elevation">4dp</dimen>
     <dimen name="fab_sheet_elevation">0dp</dimen>
 
+    <dimen name="toolbar_bg_corner_radius">10dp</dimen>
+    <dimen name="toolbar_bg_stroke_width">1dp</dimen>
+
 </resources>
